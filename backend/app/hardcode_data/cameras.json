@@ -1,0 +1,21 @@
+
+[
+    {"camera_number": "1", "title": "Камера 1", "screen_url": "img_spvp_c1_t0_raw_0003.png", "tof_url": "cloud_0_0003.pcd"},
+    {"camera_number": "2", "title": "Камера 2", "screen_url": "img_spvp_c1_t0_raw_0006.png", "tof_url": "cloud_0_0006.pcd"},
+    {"camera_number": "3", "title": "Камера 3", "screen_url": "img_spvp_c1_t0_raw_0010.png", "tof_url": "cloud_0_0010.pcd"}, 
+    {"camera_number": "4", "title": "Камера 4", "screen_url": "img_spvp_c1_t0_raw_0013.png", "tof_url": "cloud_0_0013.pcd"},
+    {"camera_number": "5", "title": "Камера 5", "screen_url": "img_spvp_c1_t0_raw_0020.png", "tof_url": "cloud_0_0020.pcd"},
+    {"camera_number": "6", "title": "Камера 6", "screen_url": "img_spvp_c1_t0_raw_0030.png", "tof_url": "cloud_0_0030.pcd"}, 
+    {"camera_number": "7", "title": "Камера 7", "screen_url": "img_spvp_c1_t0_raw_0047.png", "tof_url": "cloud_0_0047.pcd"},
+    {"camera_number": "8", "title": "Камера 8", "screen_url": "img_spvp_c1_t0_raw_0054.png", "tof_url": "cloud_0_0054.pcd"},
+    {"camera_number": "9", "title": "Камера 9", "screen_url": "img_spvp_c1_t0_raw_0061.png", "tof_url": "cloud_0_0061.pcd"}, 
+    {"camera_number": "10", "title": "Камера 10", "screen_url": "img_spvp_c1_t0_raw_0065.png", "tof_url": "cloud_0_0065.pcd"},
+    {"camera_number": "11", "title": "Камера 11", "screen_url": "img_spvp_c1_t0_raw_0068.png", "tof_url": "cloud_0_0068.pcd"},
+    {"camera_number": "12", "title": "Камера 12", "screen_url": "img_spvp_c1_t0_raw_0071.png", "tof_url": "cloud_0_0071.pcd"}, 
+    {"camera_number": "13", "title": "Камера 13", "screen_url": "img_spvp_c1_t0_raw_0074.png", "tof_url": "cloud_0_0074.pcd"},
+    {"camera_number": "14", "title": "Камера 14", "screen_url": "img_spvp_c1_t0_raw_0076.png", "tof_url": "cloud_0_0076.pcd"},
+    {"camera_number": "15", "title": "Камера 15", "screen_url": "img_spvp_c1_t0_raw_0080.png", "tof_url": "cloud_0_0080.pcd"}, 
+    {"camera_number": "16", "title": "Камера 16", "screen_url": "img_spvp_c1_t0_raw_0132.png", "tof_url": "cloud_0_0132.pcd"},
+    {"camera_number": "17", "title": "Камера 17", "screen_url": "img_spvp_c1_t0_raw_0138.png", "tof_url": "cloud_0_0138.pcd"},
+    {"camera_number": "18", "title": "Камера 18", "screen_url": "img_spvp_c1_t0_raw_0150.png", "tof_url": "cloud_0_0150.pcd"}
+]
