@@ -51,7 +51,9 @@ def in_doors(pcd_path: str):
 async def image_to_base64(image_path: str) -> str:
     async with aiofiles.open(f"{settings.DEMO_DATA_DIR}/images/{image_path}", mode="rb") as file:
         image = await file.read()
-    return base64.b64encode(image).decode("utf-8")
+
+    base64image = base64.b64encode(image).decode("utf-8")
+    return  f"data:image/png;base64,{base64image}"
     
 
 async def camera_analyse(cameras: list) -> list:
