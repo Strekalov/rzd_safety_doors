@@ -1,0 +1,39 @@
+version: '3'
+services:
+  frontend:
+    image: antivandal-frontend
+    build: ./frontend
+    depends_on:
+      - backend
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - "./frontend/dist:/usr/share/nginx/html:ro"
+    networks:
+      - default
+  backend:
+    image: safertydoors-backend
+    build: ./backend
+    networks:
+      - default
+    restart: always
+    depends_on:
+      - safertydoors-service
+    environment:
+      WEB_CONCURRENCY: "2"
+   ports:
+     - "8000:8000"
+    volumes:
+      - ./config:/app/config
+    expose:
+      - "80"
+
+  safertydoors-service:
+    image: safertydoors-service
+    build: ./service
+    restart: always
+    volumes:
+      - ./config:/app/config
+networks:
+  default:

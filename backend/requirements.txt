@@ -1,0 +1,6 @@
+aioredis
+aiofiles
+aio_pika
+fastapi[all]
+open3d
+numpy

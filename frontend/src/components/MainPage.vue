@@ -15,10 +15,10 @@
 </v-container>
 
     </v-content>
-    <v-overlay :value="overlay">
+    
     <div>
         <template v-if="cameras.length > 0">
-  <v-overlay :value="overlay">
+  
   <v-container fluid>
     
     <v-data-iterator
@@ -70,16 +70,11 @@
       </template>
 
     </v-data-iterator>
-    
+    <v-overlay :value="overlay"></v-overlay>
   </v-container>
-  </v-overlay>
 </template>
   </div>
-  </v-overlay>
-
-
 </div>
-    
 </template>
 
 
@@ -103,7 +98,7 @@ export default {
   }),
   methods: {
     postStartAnalisis: function() {
-      this.overlay = true
+      this.overlay = true;
       axios({
         url: `${BACKEND_URL}/v0/analysis/start-analysis`,
         method: "post",
@@ -114,14 +109,14 @@ export default {
       })
       .then(
         response => {
-            this.cameras = response.data
-            this.overlay = false
+            this.cameras = response.data;
+            this.overlay = false;
           this.onAlert('success')
         }
       )
       .catch(
         () => {
-          this.overlay = false
+          this.overlay = false;
           this.onAlert('error')
         }
       )
