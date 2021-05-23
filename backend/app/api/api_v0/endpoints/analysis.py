@@ -2,15 +2,22 @@ import open3d as o3d
 import numpy as np
 from fastapi import APIRouter
 from app.db.emulate_db import get_cameras_data_from_db
-from app import schemas
+# from app import schemas
+from app.core import settings
+import base64
+import aiofiles
 
 router = APIRouter()
 
 
 def in_doors(pcd_path: str):
+    """Проверка по облаку точек на нахождение объектов внутри двери."""
+
+    pcd_path = f"{settings.DEMO_DATA_DIR}/clouds_tof/{pcd_path}"
     data_json = dict()
     data_json['figures'] = []
     pcd = o3d.io.read_point_cloud(pcd_path)
+    
     # pcd.transform([[1, 0, 0, 0], [0, -1, 0, 0], [0, 0, -1, 0], [0, 0, 0, 1]])
     # voxel_down = pcd.voxel_down_sample(voxel_size=0.02)
     voxel_crop = np.asarray(pcd.points)
@@ -21,7 +28,6 @@ def in_doors(pcd_path: str):
     final_crop, ind = final_crop.remove_radius_outlier(nb_points=10, radius=0.05)
     if len(final_crop.points):
         bbox = final_crop.get_oriented_bounding_box()
-        print(bbox.get_center())
         bbox.color = (1, 0, 0)
         # o3d.visualization.draw_geometries([pcd, bbox])
         data_json['figures'].append({
@@ -42,18 +48,39 @@ def in_doors(pcd_path: str):
     return data_json
 
 
+async def image_to_base64(image_path: str) -> str:
+    async with aiofiles.open(f"{settings.DEMO_DATA_DIR}/images/{image_path}", mode="rb") as file:
+        image = await file.read()
+    return base64.b64encode(image).decode("utf-8")
+    
 
-# def camera_analyse(cameras: list):
+async def camera_analyse(cameras: list) -> list:
+    result = []
+
+    for camera in cameras:
+        camera_number = camera["camera_number"]
+        camera_title = camera["title"]
+        camera_tof_url = camera["tof_url"]
+        camera_screen_url = camera["screen_url"]
+
+        analisis_result = in_doors(camera_tof_url)
+        for figure in analisis_result["figures"]:
+            if figure.get("object"):
+                base64screen = await image_to_base64(camera_screen_url)
+
+                result.append({
+                    "camera_number": camera_number,
+                    "camera_title": camera_title,
+                    "camera_screen": base64screen,
+                })
+
+    return result
     
 
 @router.post("/start-analysis")
-def start_analysis() :
+async def start_analysis():
     """
     Запуск анализа с tof камер.
     """
-    cameras = get_cameras_data_from_db()
-        
-    return [{}for camera in cameras()]
-
-
-
+    cameras = await get_cameras_data_from_db()
+    return await camera_analyse(cameras)
